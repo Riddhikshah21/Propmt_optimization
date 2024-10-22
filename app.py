@@ -30,7 +30,7 @@ train_df.head()
 print('Train data size: ',len(train_df))
 print('Test data size: ',len(test_df))
 
-# Load the tokenizer (BERT as an example)
+# Load the tokenizer (BERT model)
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
 # Example tokenization of question-answer pairs
@@ -59,8 +59,6 @@ class QADataset(torch.utils.data.Dataset):
 # Create PyTorch datasets
 train_dataset = QADataset(train_encodings)
 test_dataset = QADataset(test_encodings)
-
-print('dataset are ready!')
 
 # Load the pre-trained BERT model for QA
 model = AutoModelForQuestionAnswering.from_pretrained("bert-base-uncased")
