@@ -9,15 +9,12 @@ from transformers import AutoModelForQuestionAnswering, AdamW
 
 #load dataset
 dataset = load_dataset("squad")
-dataset
 
 #split train and test
 train_df = dataset['train'].to_pandas()
 test_df = dataset['validation'].to_pandas()
 train_df.to_csv('train_data.csv')
 test_df.to_csv('test_data.csv')
-# print(train_df.head())
-# print(test_df.head())
 
 train_df = train_df[['question','answers']]
 test_df = test_df[['question','answers']]
@@ -27,8 +24,6 @@ train_df['answers'] = train_df['answers'].apply(lambda x: x['text'][0])
 test_df['answers'] = test_df['answers'].apply(lambda x: x['text'][0])
 
 train_df.head()
-print('Train data size: ',len(train_df))
-print('Test data size: ',len(test_df))
 
 # Load the tokenizer (BERT model)
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
@@ -67,5 +62,3 @@ model = AutoModelForQuestionAnswering.from_pretrained("bert-base-uncased")
 optimizer = AdamW(model.parameters(), lr=5e-5)
 
 print('End of program.')
-
-print('dataset')
