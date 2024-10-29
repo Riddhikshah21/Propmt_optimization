@@ -6,6 +6,7 @@ import csv
 # Load local LLM model (e.g., GPT-Neo 125M) for response generation
 # model_name = "EleutherAI/gpt-neo-1.3B"
 model_name = "Meta-Llama-3.1-8B-Instruct-GGUF"
+data = 'databricks/databricks-dolly-15k'
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
