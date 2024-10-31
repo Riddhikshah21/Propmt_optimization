@@ -7,6 +7,7 @@ import csv
 # model_name = "EleutherAI/gpt-neo-1.3B"
 model_name = "Meta-Llama-3.1-8B-Instruct-GGUF"
 data = 'databricks/databricks-dolly-15k'
+model_name = '/Users/riddhishah/Documents/GitHub/Propmt_optimization/llama_model.gguf'
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
@@ -18,7 +19,7 @@ prompts = [
     "What are the benefits of exercise?",
     "Explain photosynthesis.",
     "Describe the importance of sleep for health.",
-    # Add more prompts as needed
+    "Describe what is ",
 ]
 
 # List to store results
