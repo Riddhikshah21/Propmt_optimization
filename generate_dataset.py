@@ -1,18 +1,28 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from sentence_transformers import SentenceTransformer, util
+# from sentence_transformers import SentenceTransformer, util
 import csv
+import datasets
+from datasets import load_dataset
 
 # Load local LLM model (e.g., GPT-Neo 125M) for response generation
 # model_name = "EleutherAI/gpt-neo-1.3B"
-model_name = "Meta-Llama-3.1-8B-Instruct-GGUF"
+# model_name = "Meta-Llama-3.1-8B-Instruct-GGUF"
 data = 'databricks/databricks-dolly-15k'
+dataset = load_dataset(data)
+print(dataset)
+
+train_df = dataset['train'].to_pandas()
+print(train_df.head())
+train_df = train_df[['instruction','response']]
+# train_df['response']=train_df['response'].apply(lambda x: x['text'][0])
+
 model_name = '/Users/riddhishah/Documents/GitHub/Propmt_optimization/llama_model.gguf'
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
 # Load a sentence embedding model for scoring
-scoring_model = SentenceTransformer('all-MiniLM-L6-v2')
+# scoring_model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Define prompts to generate responses
 prompts = [
